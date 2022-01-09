@@ -5,8 +5,9 @@ const CreateForm = async (req: Request, res: Response) => {
   const form = req.body.form as formI
   if (!form || !form.formName || !form.questions) return res.sendStatus(400)
   try {
-    const exists=await Form.findOne({formName:form.formName}).lean()
-    if(exists)return res.status(400).send({message:"Form Name already in Use"})
+    const exists = await Form.findOne({ formName: form.formName }).lean()
+    if (exists)
+      return res.status(400).send({ message: "Form Name already in Use" })
     await Form.create({ ...form, active: true })
     return res.status(200).send({ message: "Form Created" })
   } catch (err) {

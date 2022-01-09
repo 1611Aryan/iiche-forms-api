@@ -20,7 +20,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? "https://iiche-recruitments.netlify.app"
+        ? "https://iichetiet.netlify.app/"
         : "http://localhost:3000",
     credentials: true,
   })
@@ -29,16 +29,6 @@ app.use(
 const MongoURI = process.env.MONGODB_URI
 
 mongoose.connect(MongoURI)
-
-export const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.NODEMAILER_USER,
-    pass: process.env.NODEMAILER_PASSWORD,
-  },
-})
 
 const connection = mongoose.connection
 

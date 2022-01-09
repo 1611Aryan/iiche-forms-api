@@ -39,6 +39,7 @@ const FormSchema = new Schema<formI>(
       _id: false,
     },
     responses: {
+      type: [{}],
       default: [],
     },
   },
