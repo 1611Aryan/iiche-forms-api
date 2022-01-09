@@ -20,7 +20,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? "https://iichetiet.netlify.app/"
+        ? "https://iichetiet.netlify.app"
         : "http://localhost:3000",
     credentials: true,
   })
