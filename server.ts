@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import cors from "cors"
 
 import nodemailer from "nodemailer"
+import router from "./Routes"
 
 process.env.NODE_ENV !== "production" && require("dotenv").config()
 
@@ -44,5 +45,7 @@ const connection = mongoose.connection
 connection.once("open", () =>
   console.log("\x1b[36mDatabase is Connected\x1b[0m")
 )
+
+app.use("/", router)
 
 app.listen(PORT, () => console.log(`The server is running at port ${PORT}`))
