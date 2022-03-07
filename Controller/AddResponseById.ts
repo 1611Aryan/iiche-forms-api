@@ -22,14 +22,14 @@ const AddResponseById = async (req: Request, res: Response) => {
     const options = {
       from: process.env.NODEMAILER_SENDER,
       to: response.email,
-      subject: "IIChE TIET Recruitments",
+      subject: "Chem-i-Leon Registration Successfull",
       html: `
         Hello ,
   <br />
   <br />
-  We hope that you and your family are doing great during this pandemic.
+  We hope that you  are doing great.
   <br />
-  This mail is to confirm that we have successfully received your recruitment form for IIChE TIET and our team will contact you shortly with further information.
+  This mail is to confirm that we have successfully received your Registration for IIChE TIET's Chem-i-Leon and our team will contact you shortly with further information.
   <br /><br />
   We recommend you to stay active on your gmail and WhatsApp.
   <br /><br />
