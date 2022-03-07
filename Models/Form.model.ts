@@ -11,6 +11,7 @@ export type question = {
 export type formI = {
   formName: string
   active: boolean
+  formBg?: string
   questions: question[]
   responses: { [key: string]: string | string[] }[]
 }
@@ -37,6 +38,10 @@ const FormSchema = new Schema<formI>(
       ],
       required: true,
       _id: false,
+    },
+    formBg: {
+      type: String,
+      required: false,
     },
     responses: {
       type: [{}],
