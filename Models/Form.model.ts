@@ -2,7 +2,14 @@ import { Document, model, Schema } from "mongoose"
 
 export type question = {
   question: string
-  responseType: "String" | "Number" | "Phone" | "Email" | "Text" | "Checkbox"
+  responseType:
+    | "String"
+    | "Number"
+    | "Phone"
+    | "Email"
+    | "Text"
+    | "Checkbox"
+    | "Radio"
   name: string
   options?: string[]
   required: boolean
@@ -12,6 +19,7 @@ export type formI = {
   formName: string
   active: boolean
   formBg?: string
+  logo?: string
   questions: question[]
   responses: { [key: string]: string | string[] }[]
 }
@@ -40,6 +48,10 @@ const FormSchema = new Schema<formI>(
       _id: false,
     },
     formBg: {
+      type: String,
+      required: false,
+    },
+    logo: {
       type: String,
       required: false,
     },
