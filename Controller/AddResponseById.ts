@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import Form, { formI } from "../Models/Form.model"
-import transporter from "../Nodemailer/transporter"
+import sendRegistrationMail from "../Mail/template"
+import Form from "../Models/Form.model"
 
 const AddResponseById = async (req: Request, res: Response) => {
   const response = req.body.response as { [key: string]: string | string[] }
@@ -19,33 +19,7 @@ const AddResponseById = async (req: Request, res: Response) => {
     if (alreadySubmitted)
       return res.status(401).send({ message: "Already Submitted" })
 
-    const options = {
-      from: process.env.NODEMAILER_SENDER,
-      to: response.email,
-      subject: "Chem-i-Leon Registration Successfull",
-      html: `
-        Hello ,
-  <br />
-  <br />
-  We hope that you  are doing great.
-  <br />
-  This mail is to confirm that we have successfully received your Registration for IIChE TIET's Chem-i-Leon and our team will contact you shortly with further information.
-  <br /><br />
-  We recommend you to stay active on your gmail and WhatsApp.
-  <br /><br />
-  Good Luck for the next round!!
-  <br /><br />
-  If you have any query you can contact the following people
-  <br />
-  Parth Sood (GenSec) : 7986810284
-  <br />
-  Or simply reply to this mail thread
-  <br /><br />
-  Regards
-  Team IIChE TIET
-        `,
-    }
-    transporter.sendMail(options)
+    sendRegistrationMail(response.email as string)
 
     await exists.update({ $push: { responses: response } })
     return res.status(200).send({ message: "Response Saved" })
