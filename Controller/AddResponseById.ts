@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import sendRegistrationMail from "../Mail/template"
 import Form from "../Models/Form.model"
 
 const AddResponseById = async (req: Request, res: Response) => {
@@ -19,7 +18,7 @@ const AddResponseById = async (req: Request, res: Response) => {
     if (alreadySubmitted)
       return res.status(401).send({ message: "Already Submitted" })
 
-    sendRegistrationMail(response.email as string)
+    //sendRegistrationMail(response.email as string)
 
     await exists.update({ $push: { responses: response } })
     return res.status(200).send({ message: "Response Saved" })
